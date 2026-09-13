@@ -192,6 +192,9 @@ body {
 }
 
 .card-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
   width: 100%;
   margin-top: 10px;
   padding: 11px;
@@ -904,6 +907,15 @@ body {
 .reject-btn:hover {
   background-color: #fff5f5;
 }
+.request-status.sent {
+  background-color: #edf7ef;
+  color: #39704a;
+}
+
+.request-status.rejected {
+  background-color: #fff5f5;
+  color: #a05a5a;
+}
 
 /* Mobile */
 
@@ -1334,5 +1346,221 @@ body {
     gap: 10px;
   }
 }
+/* Food Details */
 
+.food-details-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 7% 80px;
+}
 
+.back-link {
+  display: inline-block;
+  margin-bottom: 25px;
+  color: #39704a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.food-details-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ffffff;
+  border: 1px solid #e1ebe4;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.food-details-image {
+  height: 500px;
+}
+
+.food-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.food-details-content {
+  padding: 40px;
+}
+
+.details-category {
+  display: inline-block;
+  background-color: #edf7ef;
+  color: #39704a;
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.food-details-content h1 {
+  margin: 15px 0;
+  color: #234d32;
+  font-size: 36px;
+}
+
+.details-description {
+  color: #65786b;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.details-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.details-info div {
+  background-color: #f7faf8;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.details-info span {
+  display: block;
+  color: #9aa89f;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.details-info strong {
+  color: #234d32;
+  font-size: 14px;
+}
+
+.details-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.claim-btn,
+.message-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.claim-btn {
+  background-color: #6fa77c;
+  color: white;
+  border: none;
+}
+
+.claim-btn:hover {
+  background-color: #5d936d;
+}
+
+.message-btn {
+  background-color: white;
+  color: #39704a;
+  border: 1px solid #b8d1be;
+}
+
+.message-btn:hover {
+  background-color: #edf7ef;
+}
+
+@media (max-width: 800px) {
+  .food-details-page {
+    padding: 50px 6% 60px;
+  }
+
+  .food-details-card {
+    grid-template-columns: 1fr;
+  }
+
+  .food-details-image {
+    height: 300px;
+  }
+
+  .food-details-content {
+    padding: 25px;
+  }
+
+  .food-details-content h1 {
+    font-size: 30px;
+  }
+
+  .details-info {
+    grid-template-columns: 1fr;
+  }
+
+  .details-actions {
+    flex-direction: column;
+  }
+}
+.claim-btn:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+.claim-success {
+  margin: 15px 0 0;
+  padding: 12px;
+  background-color: #edf7ef;
+  color: #39704a;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+.message-box {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f7faf8;
+  border: 1px solid #e1ebe4;
+  border-radius: 12px;
+}
+
+.message-box h3 {
+  margin: 0 0 12px;
+  color: #234d32;
+  font-size: 17px;
+}
+
+.message-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d5e3d9;
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #234d32;
+}
+
+.message-box textarea:focus {
+  border-color: #6fa77c;
+}
+
+.send-message-btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #6fa77c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.send-message-btn:hover {
+  background-color: #5d936d;
+}
+
+.message-success {
+  margin: 12px 0 0;
+  color: #39704a;
+  font-size: 13px;
+  font-weight: bold;
+}

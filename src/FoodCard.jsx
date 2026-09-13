@@ -1,4 +1,8 @@
+import { Link } from "react-router-dom"
+
 function FoodCard({ image, name, quantity, location, expiry }) {
+  const foodSlug = name.toLowerCase().replaceAll(" ", "-")
+
   return (
     <div className="food-card">
       <img src={image} alt={name} />
@@ -15,7 +19,12 @@ function FoodCard({ image, name, quantity, location, expiry }) {
           📍 {location}
         </p>
 
-        <button className="card-btn">View Food</button>
+        <Link
+          to={`/food/${foodSlug}`}
+          className="card-btn"
+        >
+          View Food
+        </Link>
       </div>
     </div>
   )

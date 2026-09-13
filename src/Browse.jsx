@@ -1,13 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import FoodCard from "./FoodCard"
 
 function Browse() {
     const [search, setSearch] = useState("")
     const [category, setCategory] = useState("All")
+    const [foods, setFoods] = useState([])
 
-    const foods = [
+    const defaultFoods = [
         {
+            id: "default-1",
             image:
                 "https://images.unsplash.com/photo-1512058564366-18510be2db19",
             name: "Vegetable Rice",
@@ -17,6 +19,7 @@ function Browse() {
             category: "Rice"
         },
         {
+            id: "default-2",
             image:
                 "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
             name: "Fresh Idli",
@@ -26,6 +29,7 @@ function Browse() {
             category: "Breakfast"
         },
         {
+            id: "default-3",
             image:
                 "https://images.unsplash.com/photo-1547592180-85f173990554",
             name: "Vegetable Meals",
@@ -35,6 +39,7 @@ function Browse() {
             category: "Meals"
         },
         {
+            id: "default-4",
             image:
                 "https://images.unsplash.com/photo-1601050690597-df0568f70950",
             name: "Chapati",
@@ -44,6 +49,7 @@ function Browse() {
             category: "Breakfast"
         },
         {
+            id: "default-5",
             image:
                 "https://images.unsplash.com/photo-1603133872878-684f208fb84b",
             name: "Lemon Rice",
@@ -53,6 +59,7 @@ function Browse() {
             category: "Rice"
         },
         {
+            id: "default-6",
             image:
                 "https://images.unsplash.com/photo-1543353071-10c8ba85a904",
             name: "Veg Curry",
@@ -63,7 +70,21 @@ function Browse() {
         }
     ]
 
+    useEffect(() => {
+        const savedListings =
+            JSON.parse(localStorage.getItem("foodwiseListings")) || []
+
+        setFoods([
+            ...savedListings,
+            ...defaultFoods
+        ])
+    }, [])
+
     const filteredFoods = foods.filter((food) => {
+        if (food.status === "Claimed") {
+            return false
+        }
+
         const matchesSearch = food.name
             .toLowerCase()
             .includes(search.toLowerCase())
@@ -117,10 +138,22 @@ function Browse() {
                     />
 
                     <div className="category-buttons">
-                        {["All", "Rice", "Breakfast", "Meals"].map((item) => (
+                        {[
+                            "All",
+                            "Rice",
+                            "Breakfast",
+                            "Meals",
+                            "Snacks",
+                            "Fruits",
+                            "Other"
+                        ].map((item) => (
                             <button
                                 key={item}
-                                className={category === item ? "active-category" : ""}
+                                className={
+                                    category === item
+                                        ? "active-category"
+                                        : ""
+                                }
                                 onClick={() => setCategory(item)}
                             >
                                 {item}
@@ -142,7 +175,7 @@ function Browse() {
                         <div className="food-grid">
                             {filteredFoods.map((food) => (
                                 <FoodCard
-                                    key={food.name}
+                                    key={food.id}
                                     image={food.image}
                                     name={food.name}
                                     quantity={food.quantity}
@@ -154,7 +187,10 @@ function Browse() {
                     ) : (
                         <div className="no-results">
                             <h3>No food found</h3>
-                            <p>Try searching for something else.</p>
+
+                            <p>
+                                Try searching for something else.
+                            </p>
                         </div>
                     )}
                 </section>

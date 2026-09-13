@@ -1,9 +1,10 @@
-
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 function MyListings() {
-  const listings = [
+  const defaultListings = [
     {
+      id: "default-1",
       image:
         "https://images.unsplash.com/photo-1512058564366-18510be2db19",
       name: "Vegetable Rice",
@@ -13,6 +14,7 @@ function MyListings() {
       status: "Available"
     },
     {
+      id: "default-2",
       image:
         "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
       name: "Fresh Idli",
@@ -22,6 +24,7 @@ function MyListings() {
       status: "Available"
     },
     {
+      id: "default-3",
       image:
         "https://images.unsplash.com/photo-1547592180-85f173990554",
       name: "Vegetable Meals",
@@ -31,6 +34,38 @@ function MyListings() {
       status: "Claimed"
     }
   ]
+
+  const [listings, setListings] = useState(defaultListings)
+
+  useEffect(() => {
+    const savedListings =
+      JSON.parse(localStorage.getItem("foodwiseListings")) || []
+
+    setListings([
+      ...savedListings,
+      ...defaultListings
+    ])
+  }, [])
+
+  const removeListing = (id) => {
+    const updatedListings = listings.filter(
+      (food) => food.id !== id
+    )
+
+    setListings(updatedListings)
+
+    const savedListings =
+      JSON.parse(localStorage.getItem("foodwiseListings")) || []
+
+    const updatedSavedListings = savedListings.filter(
+      (food) => food.id !== id
+    )
+
+    localStorage.setItem(
+      "foodwiseListings",
+      JSON.stringify(updatedSavedListings)
+    )
+  }
 
   return (
     <div>
@@ -49,7 +84,9 @@ function MyListings() {
       </header>
 
       <main className="listings-page">
+
         <section className="listings-header">
+
           <div>
             <p className="small-title">YOUR FOOD</p>
 
@@ -63,9 +100,11 @@ function MyListings() {
           <Link to="/add-food" className="add-listing-btn">
             + Add Food
           </Link>
+
         </section>
 
         <section className="listings-summary">
+
           <div className="summary-card">
             <h3>{listings.length}</h3>
             <p>Total Listings</p>
@@ -73,32 +112,56 @@ function MyListings() {
 
           <div className="summary-card">
             <h3>
-              {listings.filter((food) => food.status === "Available").length}
+              {
+                listings.filter(
+                  (food) => food.status === "Available"
+                ).length
+              }
             </h3>
+
             <p>Available</p>
           </div>
 
           <div className="summary-card">
             <h3>
-              {listings.filter((food) => food.status === "Claimed").length}
+              {
+                listings.filter(
+                  (food) => food.status === "Claimed"
+                ).length
+              }
             </h3>
+
             <p>Claimed</p>
           </div>
+
         </section>
 
         <section className="listings-section">
+
           <div className="listings-title">
             <h2>Your Food Listings</h2>
+
             <p>{listings.length} items</p>
           </div>
 
           <div className="listings-grid">
+
             {listings.map((food) => (
-              <div className="listing-card" key={food.name}>
-                <img src={food.image} alt={food.name} />
+
+              <div
+                className="listing-card"
+                key={food.id}
+              >
+
+                <img
+                  src={food.image}
+                  alt={food.name}
+                />
 
                 <div className="listing-content">
+
                   <div className="listing-top">
+
                     <h3>{food.name}</h3>
 
                     <span
@@ -110,6 +173,7 @@ function MyListings() {
                     >
                       {food.status}
                     </span>
+
                   </div>
 
                   <p className="listing-quantity">
@@ -125,23 +189,33 @@ function MyListings() {
                   </p>
 
                   <div className="listing-actions">
+
                     <button className="edit-btn">
                       Edit
                     </button>
 
-                    <button className="remove-btn">
+                    <button
+                      className="remove-btn"
+                      onClick={() => removeListing(food.id)}
+                    >
                       Remove
                     </button>
+
                   </div>
+
                 </div>
+
               </div>
+
             ))}
+
           </div>
+
         </section>
+
       </main>
     </div>
   )
 }
 
 export default MyListings
-

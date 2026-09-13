@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
@@ -15,9 +14,33 @@ function AddFood() {
   const handleSubmit = (event) => {
     event.preventDefault()
 
+    const newFood = {
+      id: Date.now(),
+      image:
+        image ||
+        "https://images.unsplash.com/photo-1547592180-85f173990554",
+      name: foodName,
+      category: category,
+      quantity: quantity,
+      location: location,
+      expiry: expiry,
+      description: description,
+      status: "Available",
+      owner: "You"
+    }
+
+    const existingListings =
+      JSON.parse(localStorage.getItem("foodwiseListings")) || []
+
+    localStorage.setItem(
+      "foodwiseListings",
+      JSON.stringify([newFood, ...existingListings])
+    )
+
     setSubmitted(true)
 
     setFoodName("")
+    setCategory("Rice")
     setQuantity("")
     setExpiry("")
     setLocation("")
@@ -27,8 +50,6 @@ function AddFood() {
 
   return (
     <div>
-      {/* Navbar */}
-
       <header className="navbar">
         <h2 className="logo">FoodWise</h2>
 
@@ -42,8 +63,6 @@ function AddFood() {
           <Link to="/impact">Impact</Link>
         </nav>
       </header>
-
-      {/* Add Food Page */}
 
       <main className="add-food-page">
 
@@ -174,4 +193,3 @@ function AddFood() {
 }
 
 export default AddFood
-
