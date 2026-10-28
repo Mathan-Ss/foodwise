@@ -61,6 +61,7 @@ function AddFood() {
           <Link to="/messages">Messages</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/impact">Impact</Link>
+          <Link to="/register">Register</Link>
         </nav>
       </header>
 

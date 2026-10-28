@@ -1564,3 +1564,93 @@ body {
   font-size: 13px;
   font-weight: bold;
 }
+/* ================================
+   REGISTER PAGE
+================================ */
+
+.auth-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background: #f7faf7;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card .small-title {
+  margin-bottom: 10px;
+}
+
+.auth-card h1 {
+  margin-bottom: 10px;
+}
+
+.auth-card > p {
+  color: #667066;
+  line-height: 1.6;
+}
+
+.auth-card form {
+  margin-top: 30px;
+}
+
+.auth-card label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #303830;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 13px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #d8e2d8;
+  border-radius: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.auth-card input:focus {
+  border-color: #6fa86f;
+  box-shadow: 0 0 0 3px rgba(111, 168, 111, 0.12);
+}
+
+.auth-card .claim-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 10px;
+  background: #6fa86f;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card .claim-btn:hover {
+  background: #5d965d;
+}
+
+.auth-card > p:last-child {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.auth-card a {
+  color: #5d965d;
+  font-weight: 600;
+  text-decoration: none;
+}

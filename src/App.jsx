@@ -7,6 +7,8 @@ import Messages from "./Messages"
 import Profile from "./Profile"
 import Impact from "./Impact"
 import FoodDetails from "./FoodDetails"
+import Register from "./Register"
+import Login from "./login"
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +21,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/impact" element={<Impact />} />
         <Route path="/food/:foodName" element={<FoodDetails />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )

@@ -167,6 +167,7 @@ function Messages() {
           <Link to="/impact">
             Impact
           </Link>
+          <Link to="/register">Register</Link>
 
         </nav>
 
